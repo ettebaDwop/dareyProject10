@@ -145,25 +145,31 @@ Login as admin:
 You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string.
 Click on the padlock icon and you can see the details of the certificate issued for your website.     
 
+![certDetails](https://github.com/ettebaDwop/dareyProject10/assets/7973831/f4b1c25c-b9c1-4d69-98e2-25156ca7496e)
 
-Set up periodical renewal of your SSL/TLS certificate
+* Set up periodical renewal of your SSL/TLS certificate
 By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently.
+You can test renewal command in dry-run mode by running the command:
 
-You can test renewal command in dry-run mode
+`sudo certbot renew --dry-run`
 
-sudo certbot renew --dry-run
+![certdryrun](https://github.com/ettebaDwop/dareyProject10/assets/7973831/3a0866bd-0b8e-4f2a-b858-1cba2af50357)
+
+
+
 Best practice is to have a scheduled job that to run renew command periodically. Let us configure a cronjob to run the command twice a day.
 
 To do so, lets edit the crontab file with the following command:
 
-crontab -e
+`crontab -e`
+
 Add following line:
 
 * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
-You can always change the interval of this cronjob if twice a day is too often by adjusting schedule expression.
+  
+![crontab1](https://github.com/ettebaDwop/dareyProject10/assets/7973831/15e6f169-a9dc-4e19-93b7-a86550e39b5f)
 
-Side Self Study: Refresh your cron configuration knowledge by watching this video.
 
-You can also use this handy online cron expression editor.
+
 
 
