@@ -95,18 +95,32 @@ In order to get a valid SSL certificate – you need to register a new domain na
 Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
 Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
 You might have noticed, that every time you restart or stop/start your EC2 instance – you get a new public IP address. When you want to associate your domain name – it is better to have a static IP address that does not change after reboot. Elastic IP is the solution for this problem, learn how to allocate an Elastic IP and associate it with an EC2 server on this page.
+![Elastic IP](https://github.com/ettebaDwop/dareyProject10/assets/7973831/6749f402-ee99-44e4-84c0-1e8b2f6d0449)
 
 Update A record in your registrar to point to Nginx LB using Elastic IP address
-Learn how associate your domain name to your Elastic IP on this page.
 
-Side Self Study: Read about different DNS record types and learn what they are used for.
 
-Check that your Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>
 
-Configure Nginx to recognize your new domain name
+
+Check that our Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>
+![etteware NS](https://github.com/ettebaDwop/dareyProject10/assets/7973831/969eeec7-abdf-4b84-955b-01adf02e60af)
+
+On starting  NFS server, DataBase, Web1 and Web 2:
+
+![tooling_etteware](https://github.com/ettebaDwop/dareyProject10/assets/7973831/7a49c2f0-4085-43e0-8304-75e2edc858a7)
+
+
+* Configure Nginx to recognize your new domain name
+  
 Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com
 
-Install certbot and request for an SSL/TLS certificate
+![login_Lockedtoolingette](https://github.com/ettebaDwop/dareyProject10/assets/7973831/9fedd84d-b5d7-4f99-95ea-26a15bb96942)
+
+Login as admin:
+
+![LockedToolingEtte](https://github.com/ettebaDwop/dareyProject10/assets/7973831/b35d1aa8-a835-4b0a-9f31-3556ace56ff1)
+
+* Install certbot and request for an SSL/TLS certificate
 Make sure snapd service is active and running
 
 sudo systemctl status snapd
