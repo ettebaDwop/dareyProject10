@@ -44,21 +44,26 @@ CONFIGURE NGINX AS A LOAD BALANCER
 You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx. We will do the later here.
 
 1. Create an EC2 VM based on Ubuntu Server 22.04 LTS and name it Nginx LB (Open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections).
-   
-   
+      
 2. Update /etc/hosts file for local DNS with Web Servers’ names (e.g. Web1 and Web2) and their local IP addresses
+   
 3. Install and configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers
 Update the instance and Install Nginx
+
+- 1.
+
 
 ```
 sudo apt update
 sudo apt install nginx
 ```
 
-Configure Nginx LB using Web Servers’ names defined in */etc/hosts*
+- 2. Configure Nginx LB using Web Servers’ names defined in */etc/hosts*
+     
 
 
-Open the default nginx configuration file
+- 3. Open the default nginx configuration file
+     
 
 `sudo vi /etc/nginx/nginx.conf`
 
@@ -87,20 +92,19 @@ sudo systemctl restart nginx
 sudo systemctl status nginx
 ```
 
-REGISTER A NEW DOMAIN NAME AND CONFIGURE SECURED CONNECTION USING SSL/TLS CERTIFICATES
-Let us make necessary configurations to make connections to our Tooling Web Solution secured!
+###  Register a new domain name and configure secured connection using SSL/TLS certificates
 
-In order to get a valid SSL certificate – you need to register a new domain name, you can do it using any Domain name registrar – a company that manages reservation of domain names. The most popular ones are: Godaddy.com, Domain.com, Bluehost.com.
+To make our Tooling Web Solution secure we will need to add  and configure SSL/TLS Certificate. Thus, to get a valid SSL certificate we will register a new domain name using Godaddy.com.
 
-Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
-Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
-You might have noticed, that every time you restart or stop/start your EC2 instance – you get a new public IP address. When you want to associate your domain name – it is better to have a static IP address that does not change after reboot. Elastic IP is the solution for this problem, learn how to allocate an Elastic IP and associate it with an EC2 server on this page.
+* The next step is to assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
+This is so that every time we restart or stop/start our EC2 instance – we get a new public IP address associated to our domain name – it is better to have a static IP address that does not change after reboot. Elastic IP is the solution for this problem:
+
 ![Elastic IP](https://github.com/ettebaDwop/dareyProject10/assets/7973831/6749f402-ee99-44e4-84c0-1e8b2f6d0449)
 
-Update A record in your registrar to point to Nginx LB using Elastic IP address
+Update A record in your registrar to point to Nginx LB using Elastic IP address:
 ![DNS_Etteware](https://github.com/ettebaDwop/dareyProject10/assets/7973831/501689f2-f153-4f79-85f1-10247d0ff289)
 
-Check that our Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>
+Check that our Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>:
 ![etteware NS](https://github.com/ettebaDwop/dareyProject10/assets/7973831/969eeec7-abdf-4b84-955b-01adf02e60af)
 
 On starting  NFS server, DataBase, Web1 and Web 2:
@@ -154,8 +158,6 @@ You can test renewal command in dry-run mode by running the command:
 `sudo certbot renew --dry-run`
 
 ![certdryrun](https://github.com/ettebaDwop/dareyProject10/assets/7973831/3a0866bd-0b8e-4f2a-b858-1cba2af50357)
-
-
 
 Best practice is to have a scheduled job that to run renew command periodically. Let us configure a cronjob to run the command twice a day.
 
