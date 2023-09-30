@@ -1,35 +1,29 @@
 # PROJECT 10
-## LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS
-A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configures a load balancer using Apache 2
-### Overview
+# LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS
+A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configures a load balancer using Apache 2.
 
-By now you have learned what Load Balancing is used for and have configured an LB solution using Apache, but a DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. That is why, in this project we will configure an Nginx Load Balancer solution.
+## Overview
+It is also extremely important to ensure that connections to our Web solutions are secure and information is encrypted in transit – we will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
 
-It is also extremely important to ensure that connections to your Web solutions are secure and information is encrypted in transit – we will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
+When data moves between a client (browser) and a Web Server over the Internet – it passes through multiple network devices. If these data is not encrypted, it can be easily intercepted by someone who has access to an intermediate equipment. This kind of information security threat is called Man-In-The-Middle (MIMT) attack.
 
-When data is moving between a client (browser) and a Web Server over the Internet – it passes through multiple network devices and, if the data is not encrypted, it can be relatively easy intercepted by someone who has access to the intermediate equipment. This kind of information security threat is called Man-In-The-Middle (MIMT) attack.
-
-This threat is real – users that share sensitive information (bank details, social media access credentials, etc.) via non-secured channels, risk their data to be compromised and used by cybercriminals.
+This threat is real – users that share sensitive information (bank details, social media access credentials, etc.) via non-secured channels, risk their data being compromised and used by cybercriminals.
 
 SSL and its newer version, TSL – is a security technology that protects connection from MITM attacks by creating an encrypted session between browser and Web server. Here we will refer this family of cryptographic protocols as SSL/TLS – even though SSL was replaced by TLS, the term is still being widely used.
 
-SSL/TLS uses digital certificates to identify and validate a Website. A browser reads the certificate issued by a Certificate Authority (CA) to make sure that the website is registered in the CA so it can be trusted to establish a secured connection.
-
-There are different types of SSL/TLS certificates – you can learn more about them here. You can also watch a tutorial on how SSL works here or an additional resource here
-
-In this project you will register your website with LetsEnrcypt Certificate Authority, to automate certificate issuance you will use a shell client recommended by LetsEncrypt – cetrbot.
+SSL/TLS uses digital certificates to identify and validate a Website. A browser reads the certificate issued by a Certificate Authority (CA) to make sure that the website is registered in the CA so it can be trusted to establish a secured connection. In this project we will register our website with *LetsEnrcypt Certificate Authority*, to automate certificate issuance we will use a shell client recommended by LetsEncrypt – cetrbot.
 
 Our target architecture will look like this:
 ![Screenshot (588)](https://github.com/ettebaDwop/dareyProject10/assets/7973831/f6e3ea18-6e14-421f-aac3-4e98b194ee3c)
 
 
-### Task
+## TASK
 This project consists of two parts:
 
 1. Configure Nginx as a Load Balancer
 2. Register a new domain name and configure secured connection using SSL/TLS certificates
 
-### Prerequisite
+## PREREQUISITE
 The following applications from previuos projects  should be up and running:
 
 a. NFS SERVER
@@ -38,9 +32,9 @@ c. Database Server
 d. EC2 instance (Ubuntu server on AWS )
 e. Domain name with the ability to configure the DNS settings.
 
-### Implementation
+## IMPLEMENTATION
 
-CONFIGURE NGINX AS A LOAD BALANCER
+### CONFIGURE NGINX AS A LOAD BALANCER
 You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx. We will do the later here.
 
 1. Create an EC2 VM based on Ubuntu Server 22.04 LTS and name it Nginx LB (Open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections).
@@ -91,7 +85,7 @@ sudo systemctl restart nginx
 sudo systemctl status nginx
 ```
 
-###  Register a new domain name and configure secured connection using SSL/TLS certificates
+### REGISTER A NEW DOMAIN NAME AND CONFIGURE SECURED CONNECTION USING SSL/TLS CERTIFICATES
 
 To make our Tooling Web Solution secure we will need to add  and configure SSL/TLS Certificate. Thus, to get a valid SSL certificate we will register a new domain name using Godaddy.com.
 
