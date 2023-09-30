@@ -112,11 +112,7 @@ On starting  NFS server, DataBase, Web1 and Web 2:
   
 Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com
 
-![login_Lockedtoolingette](https://github.com/ettebaDwop/dareyProject10/assets/7973831/9fedd84d-b5d7-4f99-95ea-26a15bb96942)
 
-Login as admin:
-
-![LockedToolingEtte](https://github.com/ettebaDwop/dareyProject10/assets/7973831/b35d1aa8-a835-4b0a-9f31-3556ace56ff1)
 
 * Install certbot and request for an SSL/TLS certificate
 To Make sure snapd service is active and running, run the command:
@@ -140,6 +136,11 @@ Request your certificate (just follow the certbot instructions – you will need
 ![certCreated](https://github.com/ettebaDwop/dareyProject10/assets/7973831/9d2d91d2-0624-4630-992b-e5091103121e)
 
 Test secured access to your Web Solution by trying to reach https://<your-domain-name.com>
+![login_Lockedtoolingette](https://github.com/ettebaDwop/dareyProject10/assets/7973831/9fedd84d-b5d7-4f99-95ea-26a15bb96942)
+
+Login as admin:
+
+![LockedToolingEtte](https://github.com/ettebaDwop/dareyProject10/assets/7973831/b35d1aa8-a835-4b0a-9f31-3556ace56ff1)
 
 You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string.
 Click on the padlock icon and you can see the details of the certificate issued for your website.     
