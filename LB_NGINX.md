@@ -44,13 +44,6 @@ CONFIGURE NGINX AS A LOAD BALANCER
 You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx. We will do the later here.
 
 1. Create an EC2 VM based on Ubuntu Server 22.04 LTS and name it Nginx LB (Open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections).
-      
-2. Update /etc/hosts file for local DNS with Web Servers’ names (e.g. Web1 and Web2) and their local IP addresses
-   
-3. Install and configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers
-Update the instance and Install Nginx
-
-- 1.
 
 
 ```
@@ -58,11 +51,13 @@ sudo apt update
 sudo apt install nginx
 ```
 
-- 2. Configure Nginx LB using Web Servers’ names defined in */etc/hosts*
+2.  Update /etc/hosts file for local DNS with Web Servers’ names (e.g. Web1 and Web2) and their local IP addresses. Configure Nginx LB using Web Servers’ names defined in */etc/hosts*
      
+![hosts](https://github.com/ettebaDwop/dareyProject10/assets/7973831/97baab4b-8d41-47f6-892e-452dc715c8cc)
 
 
-- 3. Open the default nginx configuration file
+3. Open the default nginx configuration file. Install and configure Nginx as a load balancer to point traffic to the resolvable DNS names of the webservers
+Update the instance and Install Nginx
      
 
 `sudo vi /etc/nginx/nginx.conf`
@@ -81,11 +76,13 @@ server {
       proxy_pass http://myproject;
     }
   }
-```
-#comment out this line
-#       include /etc/nginx/sites-enabled/*;
 
-Restart Nginx and make sure the service is up and running
+#comment out this line
+#include /etc/nginx/sites-enabled/*;
+```
+![nginx_conf](https://github.com/ettebaDwop/dareyProject10/assets/7973831/51f2b35b-2c1c-4d26-bbab-b92a7d99e76b)
+
+Restart Nginx and make sure the service is up and running:
 
 ```
 sudo systemctl restart nginx
