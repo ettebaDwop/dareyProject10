@@ -98,9 +98,7 @@ You might have noticed, that every time you restart or stop/start your EC2 insta
 ![Elastic IP](https://github.com/ettebaDwop/dareyProject10/assets/7973831/6749f402-ee99-44e4-84c0-1e8b2f6d0449)
 
 Update A record in your registrar to point to Nginx LB using Elastic IP address
-
-
-
+![DNS_Etteware](https://github.com/ettebaDwop/dareyProject10/assets/7973831/501689f2-f153-4f79-85f1-10247d0ff289)
 
 Check that our Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>
 ![etteware NS](https://github.com/ettebaDwop/dareyProject10/assets/7973831/969eeec7-abdf-4b84-955b-01adf02e60af)
@@ -123,7 +121,12 @@ Login as admin:
 * Install certbot and request for an SSL/TLS certificate
 Make sure snapd service is active and running
 
-sudo systemctl status snapd
+run the command:
+
+`sudo systemctl status snapd`
+
+![nginx-snapd](https://github.com/ettebaDwop/dareyProject10/assets/7973831/5cb79199-e601-48fc-98d2-07bfd3715b35)
+
 Install certbot
 
 sudo snap install --classic certbot
