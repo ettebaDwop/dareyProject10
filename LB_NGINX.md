@@ -45,6 +45,8 @@ You can either uninstall Apache from the existing Load Balancer server, or creat
 
 1. Create an EC2 VM based on Ubuntu Server 22.04 LTS and name it Nginx LB (Open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections).
 
+![EC2NGINX](https://github.com/ettebaDwop/dareyProject10/assets/7973831/7648162f-8d07-45ea-b982-cbb0887bce41)
+![nbinx security](https://github.com/ettebaDwop/dareyProject10/assets/7973831/464b957b-820a-489d-8325-565ffcab342a)
 
 ```
 sudo apt update
