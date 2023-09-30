@@ -1,8 +1,9 @@
 # PROJECT 10
 # LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS
-A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configures a load balancer using Apache 2.
-
 ## Overview
+A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configured a load balancer using Apache 2.
+Thus, we will look at using a more recent technology to confiure a load balancer. This project the alternative would be the use of an Nginx load balancer. Ngonx is a high performance web server and a reverse proxy server.
+
 It is also extremely important to ensure that connections to our Web solutions are secure and information is encrypted in transit – we will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
 
 When data moves between a client (browser) and a Web Server over the Internet – it passes through multiple network devices. If these data is not encrypted, it can be easily intercepted by someone who has access to an intermediate equipment. This kind of information security threat is called Man-In-The-Middle (MIMT) attack.
