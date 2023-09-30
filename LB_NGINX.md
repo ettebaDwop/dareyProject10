@@ -119,21 +119,26 @@ Login as admin:
 ![LockedToolingEtte](https://github.com/ettebaDwop/dareyProject10/assets/7973831/b35d1aa8-a835-4b0a-9f31-3556ace56ff1)
 
 * Install certbot and request for an SSL/TLS certificate
-Make sure snapd service is active and running
+To Make sure snapd service is active and running, run the command:
 
-run the command:
-
-`sudo systemctl status snapd`
+                          `sudo systemctl status snapd`
 
 ![nginx-snapd](https://github.com/ettebaDwop/dareyProject10/assets/7973831/5cb79199-e601-48fc-98d2-07bfd3715b35)
 
-Install certbot
+* To install certbot run the command:
 
-sudo snap install --classic certbot
+              `sudo snap install --classic certbot`
+  
+
 Request your certificate (just follow the certbot instructions – you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure you have updated it on step 4).
 
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo certbot --nginx
+```
+   sudo ln -s /snap/bin/certbot /usr/bin/certbot
+   sudo certbot --nginx
+```
+
+![certCreated](https://github.com/ettebaDwop/dareyProject10/assets/7973831/9d2d91d2-0624-4630-992b-e5091103121e)
+
 Test secured access to your Web Solution by trying to reach https://<your-domain-name.com>
 
 You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string.
