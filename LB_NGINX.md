@@ -2,9 +2,9 @@
 ## LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS
 
 #### Overview
-By now you have learned what Load Balancing is used for and have configured an LB solution using Apache, but a DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. That is why, in this project we will configure an Nginx Load Balancer solution.
+A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configures a load balancer using Apache 2 in this project we will do the same LB configuration by using an alternative solution: Nginx Load Balancer.
 
-It is also extremely important to ensure that connections to your Web solutions are secure and information is encrypted in transit – we will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
+To ensure that connections to our Web solutions are secure and information is encrypted in transit – we will cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
 
 When data is moving between a client (browser) and a Web Server over the Internet – it passes through multiple network devices and, if the data is not encrypted, it can be relatively easy intercepted by someone who has access to the intermediate equipment. This kind of information security threat is called Man-In-The-Middle (MIMT) attack.
 
@@ -30,12 +30,18 @@ This project consists of two parts:
 2. Register a new domain name and configure secured connection using SSL/TLS certificates
 
 #### Prerequisite
+The following applications from previuos projects  should be up and running:
 
+a. NFS SERVER
+b. Web 1 and Web 2
+c. Database Server
+d. EC2 instance (Ubuntu server on AWS )
+e. Domain name with the ability to configure the DNS settings.
 
 #### Implementation
 
 CONFIGURE NGINX AS A LOAD BALANCER
-You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx.
+You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx. We will do the later here.
 
 1. Create an EC2 VM based on Ubuntu Server 22.04 LTS and name it Nginx LB (Open TCP port 80 for HTTP connections, also open TCP port 443 – this port is used for secured HTTPS connections).
    
@@ -81,7 +87,60 @@ sudo systemctl restart nginx
 sudo systemctl status nginx
 ```
 
+REGISTER A NEW DOMAIN NAME AND CONFIGURE SECURED CONNECTION USING SSL/TLS CERTIFICATES
+Let us make necessary configurations to make connections to our Tooling Web Solution secured!
+
+In order to get a valid SSL certificate – you need to register a new domain name, you can do it using any Domain name registrar – a company that manages reservation of domain names. The most popular ones are: Godaddy.com, Domain.com, Bluehost.com.
+
+Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
+Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
+You might have noticed, that every time you restart or stop/start your EC2 instance – you get a new public IP address. When you want to associate your domain name – it is better to have a static IP address that does not change after reboot. Elastic IP is the solution for this problem, learn how to allocate an Elastic IP and associate it with an EC2 server on this page.
+
+Update A record in your registrar to point to Nginx LB using Elastic IP address
+Learn how associate your domain name to your Elastic IP on this page.
+
+Side Self Study: Read about different DNS record types and learn what they are used for.
+
+Check that your Web Servers can be reached from your browser using new domain name using HTTP protocol – http://<your-domain-name.com>
+
+Configure Nginx to recognize your new domain name
+Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com
+
+Install certbot and request for an SSL/TLS certificate
+Make sure snapd service is active and running
+
+sudo systemctl status snapd
+Install certbot
+
+sudo snap install --classic certbot
+Request your certificate (just follow the certbot instructions – you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure you have updated it on step 4).
+
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+Test secured access to your Web Solution by trying to reach https://<your-domain-name.com>
+
+You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string.
+Click on the padlock icon and you can see the details of the certificate issued for your website.     
 
 
+Set up periodical renewal of your SSL/TLS certificate
+By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently.
+
+You can test renewal command in dry-run mode
+
+sudo certbot renew --dry-run
+Best practice is to have a scheduled job that to run renew command periodically. Let us configure a cronjob to run the command twice a day.
+
+To do so, lets edit the crontab file with the following command:
+
+crontab -e
+Add following line:
+
+* */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
+You can always change the interval of this cronjob if twice a day is too often by adjusting schedule expression.
+
+Side Self Study: Refresh your cron configuration knowledge by watching this video.
+
+You can also use this handy online cron expression editor.
 
 
