@@ -165,7 +165,7 @@ To do so, lets edit the crontab file with the following command:
 
 Add following line:
 
-* */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
+` * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1 `
   
 ![crontab1](https://github.com/ettebaDwop/dareyProject10/assets/7973831/15e6f169-a9dc-4e19-93b7-a86550e39b5f)
 
