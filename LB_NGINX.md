@@ -1,10 +1,11 @@
 # PROJECT 10
 ## LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS
+A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configures a load balancer using Apache 2
+### Overview
 
-#### Overview
-A DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. In the previous project we configures a load balancer using Apache 2 in this project we will do the same LB configuration by using an alternative solution: Nginx Load Balancer.
+By now you have learned what Load Balancing is used for and have configured an LB solution using Apache, but a DevOps engineer must be a versatile professional and know different alternative solutions for the same problem. That is why, in this project we will configure an Nginx Load Balancer solution.
 
-To ensure that connections to our Web solutions are secure and information is encrypted in transit – we will cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
+It is also extremely important to ensure that connections to your Web solutions are secure and information is encrypted in transit – we will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
 
 When data is moving between a client (browser) and a Web Server over the Internet – it passes through multiple network devices and, if the data is not encrypted, it can be relatively easy intercepted by someone who has access to the intermediate equipment. This kind of information security threat is called Man-In-The-Middle (MIMT) attack.
 
@@ -18,18 +19,17 @@ There are different types of SSL/TLS certificates – you can learn more about t
 
 In this project you will register your website with LetsEnrcypt Certificate Authority, to automate certificate issuance you will use a shell client recommended by LetsEncrypt – cetrbot.
 
-
 Our target architecture will look like this:
 ![Screenshot (588)](https://github.com/ettebaDwop/dareyProject10/assets/7973831/f6e3ea18-6e14-421f-aac3-4e98b194ee3c)
 
 
-#### Task
+### Task
 This project consists of two parts:
 
 1. Configure Nginx as a Load Balancer
 2. Register a new domain name and configure secured connection using SSL/TLS certificates
 
-#### Prerequisite
+### Prerequisite
 The following applications from previuos projects  should be up and running:
 
 a. NFS SERVER
@@ -38,7 +38,7 @@ c. Database Server
 d. EC2 instance (Ubuntu server on AWS )
 e. Domain name with the ability to configure the DNS settings.
 
-#### Implementation
+### Implementation
 
 CONFIGURE NGINX AS A LOAD BALANCER
 You can either uninstall Apache from the existing Load Balancer server, or create a fresh installation of Linux for Nginx. We will do the later here.
